@@ -19,7 +19,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
   publish-job:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     steps:
     - uses: actions/checkout@v4
