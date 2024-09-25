@@ -52,9 +52,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <!-- Here come other details
-        ...
-        -->
         <configuration>
           <archive>
             <manifest>
@@ -63,9 +60,6 @@
             </manifest>
           </archive>
         </configuration>
-        <!-- Here come other details
-        ...
-        -->
       </plugin>
       <plugin>
         <groupId>org.openjfx</groupId>
