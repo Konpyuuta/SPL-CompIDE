@@ -1,0 +1,39 @@
+
+
+
+.menu-bar {
+    -fx-font-size: 14px;
+    -fx-padding: 0%;
+}
+
+.menu {
+    -fx-cursor: hand;
+}
+
+.menu-item  {
+    -fx-cursor: hand;
+}
+
+.list-cell {
+    -fx-padding: 5px 0 5px 0;
+    -fx-font-size: 16px;
+    -fx-alignment: center;
+}
+
+#editor {
+    -fx-padding: 10px 0 10px 0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-background-color: linear-gradient(to bottom,#36454F 0,#000000 100%);
+    -fx-alignment: center;
+}
+
+#output {
+    -fx-padding: 5px 0 5px 0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-color: #71797E;
+    -fx-alignment: center;
+}
