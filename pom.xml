@@ -59,7 +59,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>src.main.java.Launcher</mainClass>
+              <mainClass>Launcher</mainClass>
             </manifest>
           </archive>
         </configuration>
