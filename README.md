@@ -1,6 +1,6 @@
 # SPL' Compiler
 The project contains an (mini) IDE with an integrated compiler for the fictive programming Language SPL Prime.
-For a detailed explanation of the SPL' language, please take a look at the [Wiki](/wiki)
+For a detailed explanation of the SPL' language, please take a look at the [Wiki](../../wiki)
 
 
 ## Overview
