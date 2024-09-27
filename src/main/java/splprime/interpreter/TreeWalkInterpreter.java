@@ -82,7 +82,7 @@ public class TreeWalkInterpreter implements ExprVisitor<Object>, StmtVisitor<Voi
                 return (double)left < (double)right;
             case LESS_EQUAL:
                 return (double)left <= (double)right;
-            case PLUS:
+            case PLUS_OPERATOR:
                 if(left instanceof Double && right instanceof Double) {
                     return (double)left + (double)right;
                 }
@@ -90,7 +90,7 @@ public class TreeWalkInterpreter implements ExprVisitor<Object>, StmtVisitor<Voi
                     return (String)left + (String)right;
                 }
                 throw new RuntimeError(expr.operator, "Operands must be numbers or strings!");
-            case MINUS:
+            case MINUS_OPERATOR:
                 if(left instanceof Double && right instanceof Double) {
                     return (double)left - (double)right;
                 }
@@ -117,9 +117,9 @@ public class TreeWalkInterpreter implements ExprVisitor<Object>, StmtVisitor<Voi
         Boolean left = (Boolean)evaluate(expr.left);
         Boolean right = (Boolean)evaluate(expr.right);
         switch(expr.operator.type) {
-            case AND:
+            case AND_OPERATOR:
                 return left && right;
-            case OR:
+            case OR_OPERATOR:
                 return left || right;
         }
         return null;
@@ -131,7 +131,7 @@ public class TreeWalkInterpreter implements ExprVisitor<Object>, StmtVisitor<Voi
         switch (expr.operator.type) {
             case NOT:
                 return !(Boolean)right;
-            case MINUS:
+            case MINUS_OPERATOR:
                 return -(double)right;
         }
         return null;

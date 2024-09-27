@@ -1,4 +1,4 @@
-package splprime.scan;
+package splprime.lexer;
 
 public class Token {
 	public final TokenType type;

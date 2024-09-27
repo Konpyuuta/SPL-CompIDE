@@ -1,6 +1,6 @@
 package splprime.interpreter;
 
-import splprime.scan.Token;
+import splprime.lexer.Token;
 
 public class RuntimeError extends RuntimeException {
 

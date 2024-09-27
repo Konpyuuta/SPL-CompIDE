@@ -2,7 +2,7 @@ package splprime.ast.expression;
 
 import splprime.ast.SPLExpression;
 import splprime.ast.ExprVisitor;
-import splprime.scan.Token;
+import splprime.lexer.Token;
 
 public class Assign extends SPLExpression {
 	public final Token name;

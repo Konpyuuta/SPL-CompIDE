@@ -3,7 +3,7 @@ package splprime.ast.statement;
 import splprime.ast.SPLExpression;
 import splprime.ast.SPLStatement;
 import splprime.ast.StmtVisitor;
-import splprime.scan.Token;
+import splprime.lexer.Token;
 
 public class Var extends SPLStatement {
 	public final Token name;

@@ -2,7 +2,7 @@ package splprime.ast.expression.operator;
 
 import splprime.ast.SPLExpression;
 import splprime.ast.ExprVisitor;
-import splprime.scan.Token;
+import splprime.lexer.Token;
 
 public class LogicalOperator extends SPLExpression {
 	public final SPLExpression left;

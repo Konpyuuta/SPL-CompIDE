@@ -5,10 +5,12 @@ import splprime.ast.AstPrinter;
 import splprime.ast.SPLStatement;
 import splprime.interpreter.Environment;
 import splprime.interpreter.TreeWalkInterpreter;
+import splprime.lexer.Lexer;
 import splprime.parse.Parser;
-import splprime.scan.Scanner;
-import splprime.scan.Token;
-import splprime.scan.TokenType;
+import splprime.parse.TokenList;
+import splprime.lexer.Scanner;
+import splprime.lexer.Token;
+import splprime.lexer.TokenType;
 import ui.MainWindow;
 import ui.StyleFactory;
 
@@ -25,43 +27,16 @@ public class SplPrime {
 	// Expects a single file that comprises SPL' program as argument
 	public static void startApp(String[] args) {
 
-        try {
-            runFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
     }
-
-	private static void runFile() throws IOException {
-		byte[] bytes = Files.readAllBytes(Paths.get("C:\\Users\\logik\\Documents\\StateScanner\\Fibonacci.spl"));
-		run(new String(bytes, Charset.defaultCharset()));
-
-		// Indicate an error in the exit code.
-		if (hadError) {
-			System.exit(65);
-		}
-	}
 
 	public static void run(String source) {
 		MainWindow.getInstance(null).output.clear();
-		Scanner scanner = new Scanner(source);
-		List<Token> tokens = scanner.scanTokens();
-
-//		// For now, just print the tokens
-//		System.out.println("============================== Tokens:");
-//		for (Token token : tokens) {
-//			System.out.println(token);
-//		}
+		Lexer scanner = new Lexer(source.toCharArray());
+		TokenList tokens = scanner.scanTokens();
 
 		Parser parser = new Parser(tokens);
 		List<SPLStatement> statements = parser.parse();
 
-		// For now, just print the top-level statements using our AstVisitor
-		System.out.println("\n============================== Top-level Statements:");
-		for (SPLStatement stmt : statements) {
-			System.out.println(new AstPrinter().print(stmt));
-		}
 		TreeWalkInterpreter treeWalkInterpreter = new TreeWalkInterpreter(new Environment());
 		treeWalkInterpreter.interpret(statements);
 	}

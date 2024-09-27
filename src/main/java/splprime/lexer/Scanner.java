@@ -1,17 +1,16 @@
-package splprime.scan;
+package splprime.lexer;
 
 import splprime.SplPrime;
+import splprime.parse.TokenList;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import static splprime.scan.TokenType.*;
+import static splprime.lexer.TokenType.*;
 
 public class Scanner {
 	// Keyword-map
-	private static final Map<String, TokenType> keywords;
+/*	private static final Map<String, TokenType> keywords;
 	static {
 		keywords = new HashMap<>();
 		keywords.put("and", AND);
@@ -27,7 +26,7 @@ public class Scanner {
 
 	// In and output
 	private final String source;
-	private final List<Token> tokens = new ArrayList<>();
+	private final TokenList tokens = new TokenList();
 
 	// Scan state
 	private int start = 0;
@@ -39,7 +38,7 @@ public class Scanner {
 	}
 
 	// Scan tokens
-	public List<Token> scanTokens() {
+	public TokenList  scanTokens() {
 		while (!isAtEnd()) {
 			// We are at the beginning of the next lexeme.
 			start = current;
@@ -222,5 +221,5 @@ public class Scanner {
 	private void addToken(TokenType type, Object literal) {
 		String text = source.substring(start, current);
 		tokens.add(new Token(type, text, literal, line));
-	}
+	}*/
 }
