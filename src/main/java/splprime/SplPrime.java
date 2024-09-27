@@ -8,7 +8,6 @@ import splprime.interpreter.TreeWalkInterpreter;
 import splprime.lexer.Lexer;
 import splprime.parse.Parser;
 import splprime.parse.TokenList;
-import splprime.lexer.Scanner;
 import splprime.lexer.Token;
 import splprime.lexer.TokenType;
 import ui.MainWindow;
