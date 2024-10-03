@@ -86,7 +86,18 @@ public class ProgramExecutionTest {
     @Test
     public void testFibonacci() {
         SplPrime.run(FIBONACCI_PROGRAM);
-        assertTrue(true);
+        String output = SPLOutput.getInstance().getOutputText();
+        output = output.replaceAll("\r", "");
+        assertEquals("0.0\n" +
+                "1.0\n" +
+                "1.0\n" +
+                "2.0\n" +
+                "3.0\n" +
+                "5.0\n" +
+                "8.0\n" +
+                "13.0\n" +
+                "21.0\n" +
+                "34.0\n", output);
     }
 
     @Test
