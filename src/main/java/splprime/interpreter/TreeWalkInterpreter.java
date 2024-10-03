@@ -169,8 +169,7 @@ public class TreeWalkInterpreter implements ExprVisitor<Object>, StmtVisitor<Voi
     public Void visitPrintStmt(Print stmt) {
         System.out.println(stmt.expression.accept(this));
         String newLine = System.getProperty("line.separator");
-        TextArea output = MainWindow.getInstance(new StyleFactory()).output;
-        output.setText(output.getText() + stmt.expression.accept(this) + newLine);
+        SPLOutput.getInstance().addOutputText(stmt.expression.accept(this) + newLine);
         return null;
     }
 

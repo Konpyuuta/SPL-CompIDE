@@ -4,6 +4,7 @@ import javafx.scene.control.TextArea;
 import splprime.ast.AstPrinter;
 import splprime.ast.SPLStatement;
 import splprime.interpreter.Environment;
+import splprime.interpreter.SPLOutput;
 import splprime.interpreter.TreeWalkInterpreter;
 import splprime.lexer.Lexer;
 import splprime.parse.Parser;
@@ -29,7 +30,7 @@ public class SplPrime {
     }
 
 	public static void run(String source) {
-		MainWindow.getInstance(null).output.clear();
+		SPLOutput.getInstance().clearOutputText();
 		Lexer scanner = new Lexer(source.toCharArray());
 		TokenList tokens = scanner.scanTokens();
 
@@ -54,8 +55,7 @@ public class SplPrime {
 
 	private static void report(int line, String where, String message) {
 		System.err.println("[line " + line + "] Error" + where + ": " + message);
-		TextArea output = MainWindow.getInstance(new StyleFactory()).output;
-		output.setText(output.getText() + "[line " + line + "] Error" + where + ": " + message);
+		SPLOutput.getInstance().addOutputText("[line " + line + "] Error" + where + ": " + message);
 		hadError = true;
 	}
 

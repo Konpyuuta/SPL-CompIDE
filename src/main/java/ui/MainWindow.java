@@ -6,12 +6,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import splprime.Observer;
 
 /**
  *
  * @author Maurice Amon
  */
-public class MainWindow extends View {
+public class MainWindow extends View implements Observer {
 
     private Scene scene;
 
@@ -65,4 +66,8 @@ public class MainWindow extends View {
         stage.show();
     }
 
+    @Override
+    public void update(String text) {
+        output.setText(text);
+    }
 }
