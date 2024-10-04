@@ -5,7 +5,12 @@ import splprime.interpreter.SPLOutput;
 import ui.MainWindow;
 import ui.StyleFactory;
 
-public class RunCommand implements Command{
+/** Command is responsible to run the program typed in the editor ..
+ *
+ * @author Maurice Amon
+ */
+
+public class RunCommand implements Command {
     @Override
     public void execute() {
         SPLOutput.getInstance().addObserver(MainWindow.getInstance(new StyleFactory()));

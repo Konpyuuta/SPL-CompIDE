@@ -1,6 +1,5 @@
 package splprime.interpreter;
 
-import javafx.scene.control.TextArea;
 import splprime.ast.SPLExpression;
 import splprime.ast.ExprVisitor;
 import splprime.ast.SPLStatement;
@@ -11,10 +10,13 @@ import splprime.ast.expression.operator.GroupingOperator;
 import splprime.ast.expression.operator.LogicalOperator;
 import splprime.ast.expression.operator.UnaryOperator;
 import splprime.ast.statement.*;
-import ui.MainWindow;
-import ui.StyleFactory;
-
 import java.util.List;
+
+/**
+ * Interpreter that takes the parsed AST and executes the program ..
+ *
+ * @author Maurice Amon
+ */
 
 public class TreeWalkInterpreter implements ExprVisitor<Object>, StmtVisitor<Void> {
 

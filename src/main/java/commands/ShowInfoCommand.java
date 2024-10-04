@@ -1,6 +1,11 @@
 package commands;
 
-import ui.InfoDialog;
+import ui.dialogs.InfoDialog;
+
+/** Command initiates the display of the info-window for the application ..
+ *
+ * @author Maurice Amon
+ */
 
 public class ShowInfoCommand implements Command {
     @Override

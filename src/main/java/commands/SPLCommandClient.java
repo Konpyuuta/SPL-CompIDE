@@ -5,6 +5,11 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 
+/** Client class for all ActionEvents that have been initiated by clickable GUI-components ..
+ *
+ * @author Maurice Amon
+ */
+
 public class SPLCommandClient implements EventHandler<ActionEvent> {
 
     @Override
@@ -23,12 +28,24 @@ public class SPLCommandClient implements EventHandler<ActionEvent> {
             case Actions.EXIT_ID:
                 command = new ExitCommand();
                 break;
+            case Actions.OPEN_PROJECT_ID:
+                command = new OpenProjectCommand();
+                break;
+            case Actions.CREATE_PROJECT_ID:
+                command = new CreateProjectCommand();
+                break;
             default:
                 command = new DoNothingCommand();
                 break;
         }
         command.execute();
     }
+
+    /** Extract the ID from the GUI-component that fired the event ..
+     *
+     * @param event
+     * @return
+     */
 
     private String getItemId(ActionEvent event) {
         if (event.getSource() instanceof Button) {

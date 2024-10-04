@@ -1,10 +1,11 @@
-package ui;
+package ui.dialogs;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import ui.View;
 
 public class InfoDialog extends View {
 

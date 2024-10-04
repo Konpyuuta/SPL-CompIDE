@@ -17,6 +17,10 @@ public class SPLMenuBar extends MenuBar {
 
     private final Menu INFO_MENU = new Menu("Info");
 
+    private final MenuItem CREATE_PROJECT_ITEM = new MenuItem("Create Project", new ImageView("/create_mini.png"));
+
+    private final MenuItem OPEN_PROJECT_ITEM = new MenuItem("Open Project", new ImageView("/dir.png"));
+
     private final MenuItem CLOSE_ITEM = new MenuItem("Exit", new ImageView("/exit.png"));
 
     private final MenuItem RUN_PROGRAM_ITEM = new MenuItem("Run program", new ImageView("/run.png"));
@@ -27,11 +31,14 @@ public class SPLMenuBar extends MenuBar {
 
     public SPLMenuBar() {
         FILE_MENU.setId("file");
-        FILE_MENU.getItems().add(CLOSE_ITEM);
         RUN_MENU.setId("config-run");
         RUN_MENU.getItems().addAll(RUN_PROGRAM_ITEM, DEBUG_PROGRAM_ITEM);
         INFO_MENU.setId("information");
         INFO_MENU.getItems().addAll(INFO_ITEM);
+        CREATE_PROJECT_ITEM.setId(Actions.OPEN_PROJECT_ID);
+        OPEN_PROJECT_ITEM.setId(Actions.OPEN_PROJECT_ID);
+        FILE_MENU.getItems().addAll(OPEN_PROJECT_ITEM, CREATE_PROJECT_ITEM, CLOSE_ITEM);
+
         super.getMenus().addAll(FILE_MENU, RUN_MENU, INFO_MENU);
         super.setHover(true);
         initializeActions();

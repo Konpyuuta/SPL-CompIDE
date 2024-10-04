@@ -4,6 +4,8 @@ import splprime.Observable;
 
 /**
  * Model class for managing the consoles Output
+ *
+ * @author Maurice Amon
  */
 
 public class SPLOutput extends Observable {

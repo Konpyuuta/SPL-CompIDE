@@ -18,4 +18,6 @@ public abstract class GuiFactory {
     public abstract Label createLabel();
     
     public abstract TextArea createOutput();
+
+    public abstract TreeView createFileManager();
 }

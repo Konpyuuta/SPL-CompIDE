@@ -4,11 +4,12 @@ package ui;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import splprime.Observer;
 
-/**
+/** Class initializes the IDE Window of the application ..
  *
  * @author Maurice Amon
  */
@@ -20,7 +21,11 @@ public class MainWindow extends View implements Observer {
 
     private GuiFactory factory;
 
-    private final VBox LAYOUT = new VBox();
+    private final VBox VERT_LAYOUT = new VBox();
+
+    private final VBox SECOND_VERT_LAYOUT = new VBox();
+
+    private final HBox HORIZONTAL_LAYOUT = new HBox();
 
     private static MainWindow mainWindow = null;
 
@@ -42,16 +47,19 @@ public class MainWindow extends View implements Observer {
         this.editor = factory.createEditor();
         this.separator = factory.createLabel();
         this.output = factory.createOutput();
+        this.fileManager = factory.createFileManager();
     }
 
     @Override
     public void initComponents() {
         Label label = new Label("Editor");
-        LAYOUT.getChildren().addAll(this.menuBar, this.toolBar, label, editor, separator, output);
+        HORIZONTAL_LAYOUT.getChildren().addAll(fileManager, SECOND_VERT_LAYOUT);
+        VERT_LAYOUT.getChildren().addAll(this.menuBar, this.toolBar, HORIZONTAL_LAYOUT);
+        SECOND_VERT_LAYOUT.getChildren().addAll(label, editor, separator, output);
         label.setMinWidth(960);
         label.setId("editor");
         stage = new Stage();
-        scene = new Scene(LAYOUT, 960, 720);
+        scene = new Scene(VERT_LAYOUT, 960, 720);
         scene.getStylesheets().addAll(this.getClass().getResource("/style.css").toExternalForm());
         stage.setTitle("SPL Compiler");
         stage.setScene(scene);
