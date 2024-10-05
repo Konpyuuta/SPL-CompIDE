@@ -35,7 +35,7 @@ public class SPLMenuBar extends MenuBar {
         RUN_MENU.getItems().addAll(RUN_PROGRAM_ITEM, DEBUG_PROGRAM_ITEM);
         INFO_MENU.setId("information");
         INFO_MENU.getItems().addAll(INFO_ITEM);
-        CREATE_PROJECT_ITEM.setId(Actions.OPEN_PROJECT_ID);
+        CREATE_PROJECT_ITEM.setId(Actions.CREATE_PROJECT_ID);
         OPEN_PROJECT_ITEM.setId(Actions.OPEN_PROJECT_ID);
         FILE_MENU.getItems().addAll(OPEN_PROJECT_ITEM, CREATE_PROJECT_ITEM, CLOSE_ITEM);
 

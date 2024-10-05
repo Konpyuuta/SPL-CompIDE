@@ -21,6 +21,11 @@ public class SPLFileItem extends TreeItem {
         this.file = file;
     }
 
+    public SPLFileItem(String path) {
+        super(path);
+        this.file = new File(path);
+    }
+
     public File getFile() {
         return file;
     }
