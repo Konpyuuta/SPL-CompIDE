@@ -21,7 +21,7 @@ public class StyleFactory extends GuiFactory {
 
     @Override
     public TextArea createEditor() {
-        return new SPLEditor();
+        return SPLEditor.getInstance();
     }
 
     @Override

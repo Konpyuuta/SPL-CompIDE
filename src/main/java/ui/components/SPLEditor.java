@@ -6,7 +6,16 @@ public class SPLEditor extends TextArea {
 
     private final Integer HEIGHT = 450;
 
-    public SPLEditor() {
+    public static SPLEditor splEditor;
+
+    private SPLEditor() {
         setPrefHeight(HEIGHT);
+    }
+
+    public static SPLEditor getInstance() {
+        if (splEditor == null) {
+            splEditor = new SPLEditor();
+        }
+        return splEditor;
     }
 }

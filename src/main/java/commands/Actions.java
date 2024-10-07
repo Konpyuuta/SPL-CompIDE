@@ -17,4 +17,6 @@ public abstract class Actions {
     public final static String OPEN_PROJECT_ID = "open-project";
 
     public final static String CREATE_PROJECT_ID = "create-project";
+
+    public final static String SAVE_FILE_ID = "save-file";
 }

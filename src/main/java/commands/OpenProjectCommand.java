@@ -38,7 +38,7 @@ public class OpenProjectCommand implements Command {
 
     private Boolean isDirectorySPLProject(File choosenDir) {
         for(File file : choosenDir.listFiles()) {
-            if(file.getName() == "spl.config") {
+            if(file.getName().equals("config.splc")) {
                 return true;
             }
         }

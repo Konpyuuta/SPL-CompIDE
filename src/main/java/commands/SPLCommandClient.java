@@ -34,6 +34,9 @@ public class SPLCommandClient implements EventHandler<ActionEvent> {
             case Actions.CREATE_PROJECT_ID:
                 command = new CreateProjectCommand();
                 break;
+            case Actions.SAVE_FILE_ID:
+                command = new SaveFileCommand();
+                break;
             default:
                 command = new DoNothingCommand();
                 break;

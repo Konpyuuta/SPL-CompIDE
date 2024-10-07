@@ -1,5 +1,6 @@
 package ui.components;
 
+import commands.SPLCommandClient;
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.ImageView;
 
@@ -11,6 +12,8 @@ import java.io.File;
  */
 
 public class SPLFileItem extends TreeItem {
+
+    SPLCommandClient splCommandClient = new SPLCommandClient();
 
     private final File file;
 
@@ -42,4 +45,5 @@ public class SPLFileItem extends TreeItem {
             this.setGraphic(new ImageView("/file.png"));
         }
     }
+
 }

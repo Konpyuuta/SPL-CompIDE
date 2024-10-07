@@ -56,14 +56,14 @@ public class MainWindow extends View implements Observer {
         HORIZONTAL_LAYOUT.getChildren().addAll(fileManager, SECOND_VERT_LAYOUT);
         VERT_LAYOUT.getChildren().addAll(this.menuBar, this.toolBar, HORIZONTAL_LAYOUT);
         SECOND_VERT_LAYOUT.getChildren().addAll(label, editor, separator, output);
-        label.setMinWidth(960);
+        label.setMinWidth(1130);
         label.setId("editor");
         stage = new Stage();
-        scene = new Scene(VERT_LAYOUT, 960, 720);
+        scene = new Scene(VERT_LAYOUT, 1280, 720);
         scene.getStylesheets().addAll(this.getClass().getResource("/style.css").toExternalForm());
         stage.setTitle("SPL Compiler");
         stage.setScene(scene);
-        stage.setWidth(960);
+        stage.setWidth(1280);
         stage.setHeight(720);
         stage.setResizable(false);
         stage.getIcons().add(new Image("/logo.png"));

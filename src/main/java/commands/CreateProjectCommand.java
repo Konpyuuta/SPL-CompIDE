@@ -15,6 +15,11 @@ import ui.dialogs.CreateProjectDialog;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 /** Command for creating a new project ..
  *
@@ -92,6 +97,8 @@ public class CreateProjectCommand implements Command, EventHandler<ActionEvent> 
         try {
             File mainFile = new File(path + ".spl");
             mainFile.createNewFile();
+            Path filePath = Paths.get(path + ".spl");
+            Files.writeString(filePath, "// Main File of the created project.", StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,7 +106,12 @@ public class CreateProjectCommand implements Command, EventHandler<ActionEvent> 
 
     private void createConfigFile(String path) {
         try {
-            File configFile = new File(path + File.separator + "config.spl");
+            File configFile = new File(path + File.separator + "config.splc");
+            PrintWriter writer = new PrintWriter(path + File.separator + "config.splc");
+            writer.println("project-path=" + path + File.separator);
+            writer.println("main-file= " + configFile.getName());
+            writer.println("size=1280");
+            writer.close();
             configFile.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
