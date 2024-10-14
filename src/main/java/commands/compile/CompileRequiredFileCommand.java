@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
+ * Command to handle the require-keyword ..
  *
  * @author Maurice Amon
  */
