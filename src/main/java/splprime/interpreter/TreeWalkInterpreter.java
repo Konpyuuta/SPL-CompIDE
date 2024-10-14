@@ -1,5 +1,6 @@
 package splprime.interpreter;
 
+import commands.compile.CompileRequiredFileCommand;
 import splprime.ast.SPLExpression;
 import splprime.ast.ExprVisitor;
 import splprime.ast.SPLStatement;
@@ -10,6 +11,9 @@ import splprime.ast.expression.operator.GroupingOperator;
 import splprime.ast.expression.operator.LogicalOperator;
 import splprime.ast.expression.operator.UnaryOperator;
 import splprime.ast.statement.*;
+import ui.components.SPLFileManager;
+
+import java.io.File;
 import java.util.List;
 
 /**
@@ -191,6 +195,15 @@ public class TreeWalkInterpreter implements ExprVisitor<Object>, StmtVisitor<Voi
         while((boolean)evaluate(stmt.condition)) {
             execute(stmt.body);
         }
+        return null;
+    }
+
+    @Override
+    public Void visitRequireStmt(Require stmt) {
+        String file = (String)stmt.expression.accept(this);
+        String absolutePath = SPLFileManager.getInstance().getAbsolutePathOpenProject() + File.separator + file;
+        CompileRequiredFileCommand command = new CompileRequiredFileCommand(environment, absolutePath);
+        command.execute();
         return null;
     }
 }

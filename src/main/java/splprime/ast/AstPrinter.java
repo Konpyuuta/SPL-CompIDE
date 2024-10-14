@@ -99,6 +99,16 @@ public class AstPrinter implements ExprVisitor<String>, StmtVisitor<String> {
 	}
 
 	@Override
+	public String visitRequireStmt(Require stmt) {
+		String res = getIndent() + "RequireStmt" + NL;
+
+		indent++;
+		res += stmt.expression.accept(this);
+		indent--;
+
+		return res;	}
+
+	@Override
 	public String visitAssignExpr(Assign expr) {
 		String res = getIndent() + "AssignExpr" + NL;
 

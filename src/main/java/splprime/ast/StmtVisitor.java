@@ -14,4 +14,6 @@ public interface StmtVisitor<T> {
 	T visitVarStmt(Var stmt);
 
 	T visitWhileStmt(While stmt);
+
+	T visitRequireStmt(Require stmt);
 }

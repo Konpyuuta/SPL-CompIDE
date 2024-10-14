@@ -1,13 +1,13 @@
 package splprime.lexer;
 
-
-import splprime.SplPrime;
 import splprime.lexer.states.*;
 import splprime.parse.TokenList;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/** Lexer for SPL', reads the source file and generates a list of tokens ..
+ *
+ *
+ * @author Maurice Amon
+ */
 
 public class Lexer {
 

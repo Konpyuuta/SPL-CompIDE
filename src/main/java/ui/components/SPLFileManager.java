@@ -17,6 +17,8 @@ public class SPLFileManager extends TreeView {
 
     public static SPLFileManager splFileManager;
 
+    private String absolutePathOpenProject;
+
     private int clickCounter = 0;
 
     private SPLFileItem selectedItem;
@@ -32,6 +34,14 @@ public class SPLFileManager extends TreeView {
             splFileManager = new SPLFileManager();
         }
         return splFileManager;
+    }
+
+    public void setAbsolutePathOpenProject(String absolutePath) {
+        this.absolutePathOpenProject = absolutePath;
+    }
+
+    public String getAbsolutePathOpenProject() {
+        return absolutePathOpenProject;
     }
 
     public void initializeItems(SPLFileItem rootItem) {

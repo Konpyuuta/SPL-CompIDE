@@ -30,8 +30,11 @@ public final class KeywordMap {
 
     private static final String VAR_CONSTANT = "var";
 
+    private static final String REQUIRE_CONSTANT = "require";
+
     public static final Map<String, TokenType> map = new HashMap<>();
     static {
+        map.put(REQUIRE_CONSTANT, REQUIRE);
         map.put(AND_CONSTANT, AND_OPERATOR);
         map.put(OR_CONSTANT, OR_OPERATOR);
         map.put(IF_CONSTANT, IF_CONDITION);

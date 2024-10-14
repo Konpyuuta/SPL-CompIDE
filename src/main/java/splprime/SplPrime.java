@@ -33,7 +33,6 @@ public class SplPrime {
 		SPLOutput.getInstance().clearOutputText();
 		Lexer scanner = new Lexer(source.toCharArray());
 		TokenList tokens = scanner.scanTokens();
-
 		Parser parser = new Parser(tokens);
 		List<SPLStatement> statements = parser.parse();
 

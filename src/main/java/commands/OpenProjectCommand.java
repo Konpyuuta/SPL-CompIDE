@@ -18,6 +18,7 @@ public class OpenProjectCommand implements Command {
             rootItem.setIsDirectory(true);
             traverseDirTree(rootItem);
             SPLFileManager.getInstance().initializeItems(rootItem);
+            SPLFileManager.getInstance().setAbsolutePathOpenProject(choosenDir.getAbsolutePath());
         } else {
             // Show error dialog ..
             ErrorMessageDialog errorMessageDialog = new ErrorMessageDialog(choosenDir.getAbsolutePath());

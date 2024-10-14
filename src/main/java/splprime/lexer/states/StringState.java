@@ -25,6 +25,8 @@ public class StringState implements State {
                 lexer.setState(lexer.getStartState());
                 counter = 0;
                 break;
+            default:
+                counter++;
         }
     }
 
@@ -33,6 +35,7 @@ public class StringState implements State {
         for (int i = c-counter; i < c; i++) {
             sb.append(lexer.getCodeFile()[i]);
         }
+        System.out.println("String: " + sb.toString());
         lexer.addToken(TokenType.STRING, sb.toString(), c-counter, c);
     }
 }

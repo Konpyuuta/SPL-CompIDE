@@ -80,9 +80,18 @@ public class Parser {
 				tokens.nextToken();
 				List<SPLStatement> stmts = readBlockStatements();
 				return new Block(stmts);
+			case REQUIRE:
+				return requireStatement();
 			default:
 				return expressionStatement();
 		}
+	}
+
+	private SPLStatement requireStatement() {
+		tokens.consumeToken(REQUIRE);
+		SPLExpression expression = new Literal(tokens.consumeToken(STRING).literal);
+		tokens.consumeToken(SEMICOLON);
+		return new Require(expression);
 	}
 
 

@@ -1,6 +1,8 @@
 package splprime.lexer;
 
 public enum TokenType {
+	// Inclusion of other .spl files ..
+	REQUIRE,
 	// Supported datatypes in SPL-Prime ..
 	VAR, BOOLEAN, NUMBER, STRING, IDENTIFIER,
 	// Boolean values ..
