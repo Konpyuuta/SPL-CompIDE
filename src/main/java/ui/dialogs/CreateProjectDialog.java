@@ -13,12 +13,15 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
+import model.OpenedProjectModel;
+import model.languages.Language;
 import ui.View;
 
 import java.io.File;
 
 public class CreateProjectDialog extends View {
 
+    private Language language = OpenedProjectModel.getInstance().getLanguage();
 
     public final Dialog<Pair<String, String>> CREATE_PROJECT_LAYOUT = new Dialog<>();
 
@@ -30,19 +33,19 @@ public class CreateProjectDialog extends View {
 
     private DirectoryChooser directoryChooser = new DirectoryChooser();
 
-    private Button directoryChooserButton = new Button("Choose directory");
+    private Button directoryChooserButton = new Button(language.getCreateNewProjectLocationChooser());
 
-    private final Label DIR_LABEL = new Label("Location: ");
+    private final Label DIR_LABEL = new Label(language.getCreateNewProjectLocationLabel());
 
-    private final Label PROJECT_NAME_LABEL = new Label("Name of project: ");
+    private final Label PROJECT_NAME_LABEL = new Label(language.getCreateNewProjectNameLabel());
 
-    private final Label NAME_LABEL = new Label("Name of main-file: ");
+    private final Label NAME_LABEL = new Label(language.getCreateNewProjectMainFileLabel());
 
     private final GridPane DIALOG_LAYOUT = new GridPane();
 
-    private final Button CONFIRM_BUTTON = new Button("Bestätigen");
+    private final Button CONFIRM_BUTTON = new Button(language.getConfirmButtonText());
 
-    private final Button CANCEL_BUTTON = new Button("Abbrechen");
+    private final Button CANCEL_BUTTON = new Button(language.getCancelButtonText());
 
     public CreateProjectDialog() {
         ((Stage) CREATE_PROJECT_LAYOUT.getDialogPane().getScene().getWindow()).setOnCloseRequest((WindowEvent event1) -> {
@@ -62,8 +65,8 @@ public class CreateProjectDialog extends View {
 
     @Override
     public void prepareView() {
-        CREATE_PROJECT_LAYOUT.setTitle("SPL' Compiler: Create a new project");
-        CREATE_PROJECT_LAYOUT.setHeaderText("Create a new project.");
+        CREATE_PROJECT_LAYOUT.setTitle(language.getCreateNewProjectTitle());
+        CREATE_PROJECT_LAYOUT.setHeaderText(language.getCreateNewProjectDescription());
         CREATE_PROJECT_LAYOUT.setGraphic(new ImageView("/dir-dialog.png"));
         DIALOG_LAYOUT.setVgap(10);
         DIALOG_LAYOUT.setHgap(10);

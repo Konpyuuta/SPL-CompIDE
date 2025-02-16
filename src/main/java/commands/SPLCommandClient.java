@@ -1,5 +1,6 @@
 package commands;
 
+import commands.config.ShowConfigDialogCommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ public class SPLCommandClient implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        SPLExecutorService splExecutorService;
         Command command;
         switch (getItemId(actionEvent)) {
             case Actions.RUN_ID:
@@ -34,14 +36,24 @@ public class SPLCommandClient implements EventHandler<ActionEvent> {
             case Actions.CREATE_PROJECT_ID:
                 command = new CreateProjectCommand();
                 break;
+            case Actions.CONFIG_PROJECT:
+                command = new ShowConfigDialogCommand();
+                break;
             case Actions.SAVE_FILE_ID:
                 command = new SaveFileCommand();
+                break;
+            case Actions.ADD_FILE_DIALOG_ID:
+                command = new AddFileDialogCommand();
+                break;
+            case Actions.REMOVE_FILE_DIALOG_ID:
+                command = new RemoveFileCommand();
                 break;
             default:
                 command = new DoNothingCommand();
                 break;
         }
-        command.execute();
+        splExecutorService = new SPLExecutorService(command);
+        splExecutorService.runExecution();
     }
 
     /** Extract the ID from the GUI-component that fired the event ..

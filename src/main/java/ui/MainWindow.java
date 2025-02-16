@@ -3,11 +3,13 @@ package ui;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import splprime.Observer;
+import ui.components.execution.SPLExecutionComponent;
 
 /** Class initializes the IDE Window of the application ..
  *
@@ -45,8 +47,10 @@ public class MainWindow extends View implements Observer {
         this.menuBar = factory.createMenuBar();
         this.toolBar = factory.createToolBar();
         this.editor = factory.createEditor();
+        this.pane = factory.createStackPane();
+        this.tabPane = factory.createTabPane();
         this.separator = factory.createLabel();
-        this.output = factory.createOutput();
+        this.output = factory.createExecutionComponent();
         this.fileManager = factory.createFileManager();
     }
 
@@ -55,8 +59,8 @@ public class MainWindow extends View implements Observer {
         Label label = new Label("Editor");
         HORIZONTAL_LAYOUT.getChildren().addAll(fileManager, SECOND_VERT_LAYOUT);
         VERT_LAYOUT.getChildren().addAll(this.menuBar, this.toolBar, HORIZONTAL_LAYOUT);
-        SECOND_VERT_LAYOUT.getChildren().addAll(label, editor, separator, output);
-        label.setMinWidth(1130);
+        SECOND_VERT_LAYOUT.getChildren().addAll(label, tabPane, separator, output);
+        label.setMinWidth(1050);
         label.setId("editor");
         stage = new Stage();
         scene = new Scene(VERT_LAYOUT, 1280, 720);
@@ -75,7 +79,11 @@ public class MainWindow extends View implements Observer {
     }
 
     @Override
-    public void update(String text) {
-        output.setText(text);
+    public void update(Object text) {
+        ((TextArea)output.getChildren().get(0)).setText((String)text);
+    }
+
+    public SPLExecutionComponent getExecutionComponent() {
+        return (SPLExecutionComponent) output;
     }
 }

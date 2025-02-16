@@ -1,12 +1,13 @@
 package ui.components;
 
 import javafx.scene.control.Label;
+import model.OpenedProjectModel;
 
 public class SPLLabel extends Label {
 
-    private final String TEXT = "Output";
+    private final String TEXT = OpenedProjectModel.getInstance().getLanguage().getOutputNameText();
 
-    private final Integer WIDTH = 1130;
+    private final Integer WIDTH = 1050;
 
     private final String ID = "output";
 

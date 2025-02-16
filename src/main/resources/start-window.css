@@ -1,0 +1,22 @@
+/**
+
+author: Maurice Amon
+ */
+
+#create-project {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+#create-project:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+}
+
+#open-project {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+#open-project:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+}

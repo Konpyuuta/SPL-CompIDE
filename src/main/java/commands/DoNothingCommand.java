@@ -10,4 +10,9 @@ public class DoNothingCommand implements Command {
     public void execute() {
         // Do nothing ...
     }
+
+    @Override
+    public void undo() {
+        // No implementation yet ..
+    }
 }

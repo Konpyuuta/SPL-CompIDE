@@ -88,10 +88,11 @@ public class Parser {
 	}
 
 	private SPLStatement requireStatement() {
+		Integer line = tokens.getCurrentToken().line;
 		tokens.consumeToken(REQUIRE);
 		SPLExpression expression = new Literal(tokens.consumeToken(STRING).literal);
 		tokens.consumeToken(SEMICOLON);
-		return new Require(expression);
+		return new Require(expression, line);
 	}
 
 
@@ -100,6 +101,7 @@ public class Parser {
 	 * @return
 	 */
 	private SPLStatement ifStatement() {
+		Integer line = tokens.getCurrentToken().line;
 		tokens.consumeToken(LEFT_PAREN);
 		SPLExpression condition = expression();
 		tokens.consumeToken(RIGHT_PAREN);
@@ -110,7 +112,7 @@ public class Parser {
 			elseBranch = statement();
 		}
 
-		return new If(condition, thenBranch, elseBranch);
+		return new If(condition, thenBranch, elseBranch, line);
 	}
 
 	/** Grammar rule for print statements ..
@@ -118,9 +120,10 @@ public class Parser {
 	 * @return
 	 */
 	private SPLStatement printStatement() {
+		Integer line = tokens.getCurrentToken().line;
 		SPLExpression value = expression();
 		tokens.consumeToken(SEMICOLON);
-		return new Print(value);
+		return new Print(value, line);
 	}
 
 	/** Grammar rule for VarDecl ...
@@ -128,6 +131,7 @@ public class Parser {
 	 * @return
 	 */
 	private SPLStatement varDeclaration() {
+		Integer line = tokens.getCurrentToken().line;
 		Token name = tokens.consumeToken(IDENTIFIER);
 
 		SPLExpression initializer = null;
@@ -136,7 +140,7 @@ public class Parser {
 		}
 
 		tokens.consumeToken(SEMICOLON);
-		return new Var(name, initializer);
+		return new Var(name, initializer, line);
 	}
 
 	/** Grammar rule for while-statements ..
@@ -144,12 +148,13 @@ public class Parser {
 	 * @return
 	 */
 	private SPLStatement whileStatement() {
+		Integer line = tokens.getCurrentToken().line;
 		tokens.consumeToken(LEFT_PAREN);
 		SPLExpression condition = expression();
 		tokens.consumeToken(RIGHT_PAREN);
 		SPLStatement body = statement();
 
-		return new While(condition, body);
+		return new While(condition, body, line);
 	}
 
 	/** Grammar rule for expressions ..
@@ -157,9 +162,10 @@ public class Parser {
 	 * @return
 	 */
 	private SPLStatement expressionStatement() {
+		Integer line = tokens.getCurrentToken().line;
 		SPLExpression expr = expression();
 		tokens.consumeToken(SEMICOLON);
-		return new Expression(expr);
+		return new Expression(expr, line);
 	}
 
 	/** Grammar rule for blocks ..

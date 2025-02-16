@@ -1,5 +1,10 @@
 package splprime.ast;
 
 public abstract class SPLStatement {
-	public abstract <T> T accept(StmtVisitor<T> visitor);
+
+	protected Integer line;
+
+	public Integer getLine() { return line; }
+
+    public abstract <T> T accept(StmtVisitor<T> visitor);
 }

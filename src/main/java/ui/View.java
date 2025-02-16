@@ -3,6 +3,8 @@
 package ui;
 
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 
 /** Abstract class that all View-designs of the main window have to extend.
  *
@@ -16,9 +18,13 @@ public abstract class View {
     
     public TextArea editor;
 
+    public StackPane pane;
+
+    public TabPane tabPane;
+
     public Label separator;
 
-    public TextArea output;
+    public HBox output;
 
     public TreeView fileManager;
 

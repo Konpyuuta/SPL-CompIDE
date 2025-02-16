@@ -15,4 +15,9 @@ public class ShowInfoCommand implements Command {
         infoDialog.initComponents();
         infoDialog.showView();
     }
+
+    @Override
+    public void undo() {
+        // No implementation yet ..
+    }
 }

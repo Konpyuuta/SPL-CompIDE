@@ -10,6 +10,7 @@ public class CommentState implements State {
     public CommentState(Lexer lexer) {
         this.lexer = lexer;
     }
+
     @Override
     public void nextIndex(int c) {
         char d = lexer.getCodeFile()[c];

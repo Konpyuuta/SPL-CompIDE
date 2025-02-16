@@ -175,6 +175,7 @@ public class TreeWalkInterpreter implements ExprVisitor<Object>, StmtVisitor<Voi
     public Void visitPrintStmt(Print stmt) {
         System.out.println(stmt.expression.accept(this));
         String newLine = System.getProperty("line.separator");
+
         SPLOutput.getInstance().addOutputText(stmt.expression.accept(this) + newLine);
         return null;
     }
@@ -205,5 +206,9 @@ public class TreeWalkInterpreter implements ExprVisitor<Object>, StmtVisitor<Voi
         CompileRequiredFileCommand command = new CompileRequiredFileCommand(environment, absolutePath);
         command.execute();
         return null;
+    }
+
+    public Environment getEnvironment() {
+        return environment;
     }
 }

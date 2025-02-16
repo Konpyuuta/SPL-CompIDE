@@ -10,4 +10,9 @@ public class DebugCommand implements Command {
     public void execute() {
 
     }
+
+    @Override
+    public void undo() {
+        // No implementation yet ..
+    }
 }

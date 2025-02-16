@@ -35,14 +35,16 @@ public class CompileRequiredFileCommand implements Command {
         File sourceFile = new File(absolutePath);
         Lexer scanner = new Lexer(readFile(sourceFile).toCharArray());
         TokenList tokens = scanner.scanTokens();
-        for(Token token : tokens) {
-            System.out.println("TK: " + token.toString());
-        }
         Parser parser = new Parser(tokens);
         List<SPLStatement> statements = parser.parse();
 
         TreeWalkInterpreter treeWalkInterpreter = new TreeWalkInterpreter(environment);
         treeWalkInterpreter.interpret(statements);
+    }
+
+    @Override
+    public void undo() {
+        // No implementation yet ..
     }
 
     private String readFile(File file) {

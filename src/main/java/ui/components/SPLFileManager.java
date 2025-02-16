@@ -1,12 +1,13 @@
 package ui.components;
 
 import commands.OpenFileCommand;
+import commands.editor.FileManagerClickCommand;
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import org.fxmisc.richtext.CodeArea;
+
+import java.io.File;
 
 /**
  *
@@ -23,9 +24,12 @@ public class SPLFileManager extends TreeView {
 
     private SPLFileItem selectedItem;
 
+    private SPLFileItem rootItem;
+
 
     private SPLFileManager() {
-        setMinWidth(150);
+        setMinWidth(250);
+        setContextMenu(new SPLFileManagerContextMenu());
         initializeAction();
     }
 
@@ -45,23 +49,34 @@ public class SPLFileManager extends TreeView {
     }
 
     public void initializeItems(SPLFileItem rootItem) {
+        this.rootItem = rootItem;
         this.setRoot(rootItem);
     }
 
+    public SPLFileItem getRootItem() {
+        return rootItem;
+    }
+
     private void initializeAction() {
-        setOnMouseClicked(mouseEvent -> {
-            selectedItem = (SPLFileItem) getSelectionModel().getSelectedItem();
-            if(selectedItem == null) {
-                return;
+        setOnMouseClicked(new FileManagerClickCommand(this));
+    }
+
+    public void traverseDirTree(SPLFileItem rootItem) {
+        if(rootItem.getFile().listFiles() == null) {
+            return;
+        }
+        for(File file : rootItem.getFile().listFiles()) {
+            SPLFileItem child = new SPLFileItem(file);
+            if(file.isDirectory()) {
+                // Create TreeItem with dir image ..
+                child.setIsDirectory(true);
+            } else {
+                // Create TreeItem with file image ..
+                child.setIsDirectory(false);
             }
-            clickCounter++;
-            if(clickCounter == 2) {
-                OpenFileCommand openFileCommand = new OpenFileCommand(selectedItem.getFile().getName(), selectedItem.getFile().getPath());
-                openFileCommand.execute();
-                clickCounter = 0;
-                selectedItem = null;
-            }
-        });
+            rootItem.getChildren().add(child);
+            traverseDirTree(child);
+        }
     }
 
 }

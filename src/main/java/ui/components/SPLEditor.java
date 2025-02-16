@@ -1,5 +1,6 @@
 package ui.components;
 
+import commands.debugging.SPLDebuggingCommandClient;
 import javafx.scene.control.TextArea;
 
 public class SPLEditor extends TextArea {
@@ -17,5 +18,9 @@ public class SPLEditor extends TextArea {
             splEditor = new SPLEditor();
         }
         return splEditor;
+    }
+
+    private void initializeActions() {
+        //this.setOnMouseClicked(new SPLDebuggingCommandClient());
     }
 }

@@ -2,6 +2,8 @@
 package ui;
 
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 
 /**
  *
@@ -15,9 +17,13 @@ public abstract class GuiFactory {
     
     public abstract TextArea createEditor();
 
+    public abstract TabPane createTabPane();
+
+    public abstract StackPane createStackPane();
+
     public abstract Label createLabel();
     
-    public abstract TextArea createOutput();
+    public abstract HBox createExecutionComponent();
 
     public abstract TreeView createFileManager();
 }

@@ -7,5 +7,5 @@ package splprime;
 
 public interface Observer {
 
-    void update(String text);
+    void update(Object object);
 }

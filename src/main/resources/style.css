@@ -1,5 +1,8 @@
 
+/**
 
+author: Maurice Amon
+ */
 
 .menu-bar {
     -fx-font-size: 14px;
@@ -36,4 +39,30 @@
     -fx-font-size: 14px;
     -fx-background-color: #71797E;
     -fx-alignment: center;
+}
+
+.keyword {
+    -fx-fill: blue;
+    -fx-font-weight: bold;
+}
+.semicolon {
+    -fx-font-weight: bold;
+}
+.paren {
+    -fx-font-weight: bold;
+}
+.bracket {
+    -fx-fill: darkgreen;
+    -fx-font-weight: bold;
+}
+.brace {
+    -fx-fill: teal;
+    -fx-font-weight: bold;
+}
+.string {
+    -fx-fill: green;
+}
+
+.comment {
+    -fx-fill: green;
 }

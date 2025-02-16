@@ -9,9 +9,10 @@ public class Var extends SPLStatement {
 	public final Token name;
 	public final SPLExpression initializer;
 	
-	public Var(Token name, SPLExpression initializer) {
+	public Var(Token name, SPLExpression initializer, Integer line) {
 		this.name = name;
 		this.initializer = initializer;
+		this.line = line;
 	}
 
 	@Override

@@ -1,16 +1,16 @@
 package commands;
 
+import commands.start.StartEditorCommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TreeItem;
-import javafx.scene.layout.VBox;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import model.OpenedProjectModel;
+import model.languages.Language;
+import ui.MainWindow;
 import ui.components.SPLFileItem;
 import ui.components.SPLFileManager;
+import ui.components.SPLToolBar;
 import ui.dialogs.CreateProjectDialog;
 
 import java.io.File;
@@ -36,6 +36,11 @@ public class CreateProjectCommand implements Command, EventHandler<ActionEvent> 
         createProjectDialog.prepareView();
         createProjectDialog.showView();
         createProjectDialog.initializeActions(this);
+    }
+
+    @Override
+    public void undo() {
+        // No implementation yet ..
     }
 
     private void traverseDirTree(SPLFileItem root) {
@@ -76,12 +81,20 @@ public class CreateProjectCommand implements Command, EventHandler<ActionEvent> 
         String mainFileName = createProjectDialog.getMainFileName().getText();
         createDirectory(absolutePath + File.separator + projectName);
         createMainFile(absolutePath + File.separator + projectName + File.separator + mainFileName);
-        createConfigFile(absolutePath + File.separator + projectName);
+        createConfigFile(absolutePath + File.separator + projectName, mainFileName);
 
         SPLFileItem rootItem = new SPLFileItem(absolutePath + File.separator + projectName);
         rootItem.setIsDirectory(true);
         traverseDirTree(rootItem);
+        OpenedProjectModel.getInstance().setLanguage(Language.configuredLanguage("English"));
+        StartEditorCommand startEditorCommand = new StartEditorCommand();
+        startEditorCommand.execute();
         SPLFileManager.getInstance().initializeItems(rootItem);
+        SPLFileManager.getInstance().setAbsolutePathOpenProject(absolutePath);
+        OpenedProjectModel.getInstance().addObserver((SPLToolBar) MainWindow.getInstance(null).toolBar);
+        OpenedProjectModel.getInstance().setProjectPath(absolutePath + File.separator + projectName);
+        OpenedProjectModel.getInstance().setMainFileName(mainFileName + ".spl");
+        OpenedProjectModel.getInstance().setConfigPath(absolutePath + File.separator + "config.splc");
     }
 
     private void createDirectory(String path) {
@@ -104,13 +117,13 @@ public class CreateProjectCommand implements Command, EventHandler<ActionEvent> 
         }
     }
 
-    private void createConfigFile(String path) {
+    private void createConfigFile(String path, String mainFileName) {
         try {
             File configFile = new File(path + File.separator + "config.splc");
             PrintWriter writer = new PrintWriter(path + File.separator + "config.splc");
-            writer.println("project-path=" + path + File.separator);
-            writer.println("main-file= " + configFile.getName());
-            writer.println("size=1280");
+            writer.println("LANGUAGE=English");
+            writer.println("MAIN_FILE=" + mainFileName + ".spl");
+            writer.println("DESIGN=Standard");
             writer.close();
             configFile.createNewFile();
         } catch (IOException e) {

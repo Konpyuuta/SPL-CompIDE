@@ -9,10 +9,11 @@ public class If extends SPLStatement {
 	public final SPLStatement thenBranch;
 	public final SPLStatement elseBranch;
 
-	public If(SPLExpression condition, SPLStatement thenBranch, SPLStatement elseBranch) {
+	public If(SPLExpression condition, SPLStatement thenBranch, SPLStatement elseBranch, Integer line) {
 		this.condition = condition;
 		this.thenBranch = thenBranch;
 		this.elseBranch = elseBranch;
+		this.line = line;
 	}
 
 	@Override
