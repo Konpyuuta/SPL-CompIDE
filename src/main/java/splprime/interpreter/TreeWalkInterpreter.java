@@ -26,9 +26,19 @@ public class TreeWalkInterpreter implements ExprVisitor<Object>, StmtVisitor<Voi
 
     private Environment environment;
 
+    private List<SPLStatement> program;
+
+    private Integer counter;
+
     public TreeWalkInterpreter(Environment environment) {
         this.environment = environment;
     }
+
+    public void load(List<SPLStatement> statements) {
+        this.program = statements;
+        this.counter = 0;
+    }
+
     public void interpret(List<SPLStatement> statements) {
         try {
             for (SPLStatement statement : statements) {
@@ -37,6 +47,30 @@ public class TreeWalkInterpreter implements ExprVisitor<Object>, StmtVisitor<Voi
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public SPLStatement getCurrentStatement() {
+        if (program == null || counter >= program.size()) {
+            return null;
+        }
+        return program.get(counter);
+    }
+
+    public boolean executeNext() {
+        if (program == null || counter >= program.size()) {
+            return false;
+        }
+
+        SPLStatement stmt = program.get(counter);
+
+        // Execute exactly one statement
+        stmt.accept(this);
+
+        // Advance instruction pointer
+        counter++;
+
+        // Return true if there is more to execute
+        return counter < program.size();
     }
 
     private void execute(SPLStatement stmt) {

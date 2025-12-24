@@ -28,8 +28,23 @@ public class SPLMenuBar extends MenuBar {
 
     private final MenuItem RUN_PROGRAM_ITEM = new MenuItem(OpenedProjectModel.getInstance().getLanguage().getRunMenuItemText(), new ImageView("/run.png"));
 
-    private final MenuItem DEBUG_PROGRAM_ITEM = new MenuItem(OpenedProjectModel.getInstance().getLanguage().getDebugMenuItemText(), new ImageView("/debug.png"));
+    private final MenuItem DEBUG_PROGRAM_ITEM;
 
+    {
+        ImageView debugIcon = new ImageView(
+                getClass().getResource("/debug.png").toExternalForm()
+        );
+        debugIcon.setFitWidth(24);
+        debugIcon.setFitHeight(24);
+        debugIcon.setPreserveRatio(true);
+
+        DEBUG_PROGRAM_ITEM = new MenuItem(
+                OpenedProjectModel.getInstance()
+                        .getLanguage()
+                        .getDebugMenuItemText(),
+                debugIcon
+        );
+    }
     private final MenuItem INFO_ITEM = new MenuItem(OpenedProjectModel.getInstance().getLanguage().getInfoMenuItemText(), new ImageView("/info_little.png"));
 
     public SPLMenuBar() {
@@ -39,6 +54,7 @@ public class SPLMenuBar extends MenuBar {
         INFO_MENU.setId("information");
         INFO_MENU.getItems().addAll(INFO_ITEM);
         CREATE_PROJECT_ITEM.setId(Actions.CREATE_PROJECT_ID);
+        CREATE_PROJECT_ITEM.setDisable(true);
         OPEN_PROJECT_ITEM.setId(Actions.OPEN_PROJECT_ID);
         CONFIG_ITEM.setId(Actions.CONFIG_PROJECT);
         FILE_MENU.getItems().addAll(OPEN_PROJECT_ITEM, CREATE_PROJECT_ITEM, CONFIG_ITEM, CLOSE_ITEM);
@@ -59,5 +75,9 @@ public class SPLMenuBar extends MenuBar {
                 item.setOnAction(splCommandClient);
             });
         });
+    }
+
+    public Menu getRunMenu() {
+        return RUN_MENU;
     }
 }

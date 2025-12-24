@@ -21,29 +21,33 @@ public class OpenProjectCommand implements Command {
     @Override
     public void execute() {
         File choosenDir = chooseDirectory();
-        if(isDirectorySPLProject(choosenDir)) {
-            ParseConfigFileCommand parseConfigFileCommand = new ParseConfigFileCommand(choosenDir);
-            parseConfigFileCommand.execute();
-            SPLFileItem rootItem = new SPLFileItem(choosenDir);
-            rootItem.setIsDirectory(true);
-            traverseDirTree(rootItem);
-            OpenedProjectModel.getInstance().setLanguage(Language.configuredLanguage(parseConfigFileCommand.getLanguageName()));
-            StartEditorCommand startEditorCommand = new StartEditorCommand();
-            startEditorCommand.execute();
-            SPLFileManager.getInstance().initializeItems(rootItem);
-            SPLFileManager.getInstance().setAbsolutePathOpenProject(choosenDir.getAbsolutePath());
-            OpenedProjectModel.getInstance().addObserver((SPLToolBar)MainWindow.getInstance(null).toolBar);
-            OpenedProjectModel.getInstance().setProjectPath(choosenDir.getAbsolutePath());
-            OpenedProjectModel.getInstance().setMainFileName(parseConfigFileCommand.getMainFile());
-            OpenedProjectModel.getInstance().setConfigPath(choosenDir.getAbsolutePath() + File.separator + configFileName);
+        if(choosenDir != null) {
 
-        } else {
+            if(isDirectorySPLProject(choosenDir)) {
+                ParseConfigFileCommand parseConfigFileCommand = new ParseConfigFileCommand(choosenDir);
+                parseConfigFileCommand.execute();
+                SPLFileItem rootItem = new SPLFileItem(choosenDir);
+                rootItem.setIsDirectory(true);
+                traverseDirTree(rootItem);
+                OpenedProjectModel.getInstance().setLanguage(Language.configuredLanguage(parseConfigFileCommand.getLanguageName()));
+                StartEditorCommand startEditorCommand = new StartEditorCommand();
+                startEditorCommand.execute();
+                SPLFileManager.getInstance().initializeItems(rootItem);
+                SPLFileManager.getInstance().setAbsolutePathOpenProject(choosenDir.getAbsolutePath());
+                OpenedProjectModel.getInstance().addObserver((SPLToolBar)MainWindow.getInstance(null).toolBar);
+                OpenedProjectModel.getInstance().setProjectPath(choosenDir.getAbsolutePath());
+                OpenedProjectModel.getInstance().setMainFileName(parseConfigFileCommand.getMainFile());
+                OpenedProjectModel.getInstance().setConfigPath(choosenDir.getAbsolutePath() + File.separator + configFileName);
+
+        }   else {
             // Show error dialog ..
-            ErrorMessageDialog errorMessageDialog = new ErrorMessageDialog(choosenDir.getAbsolutePath());
-            errorMessageDialog.initComponents();
-            errorMessageDialog.prepareView();
-            errorMessageDialog.showView();
+                ErrorMessageDialog errorMessageDialog = new ErrorMessageDialog(choosenDir.getAbsolutePath());
+                errorMessageDialog.initComponents();
+                errorMessageDialog.prepareView();
+                errorMessageDialog.showView();
+            }
         }
+
 
     }
 

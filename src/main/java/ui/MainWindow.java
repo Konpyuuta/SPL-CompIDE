@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import splprime.Observer;
@@ -59,7 +60,10 @@ public class MainWindow extends View implements Observer {
         Label label = new Label("Editor");
         HORIZONTAL_LAYOUT.getChildren().addAll(fileManager, SECOND_VERT_LAYOUT);
         VERT_LAYOUT.getChildren().addAll(this.menuBar, this.toolBar, HORIZONTAL_LAYOUT);
+        tabPane.setMaxHeight(Double.MAX_VALUE);
+        VBox.setVgrow(tabPane, Priority.ALWAYS);
         SECOND_VERT_LAYOUT.getChildren().addAll(label, tabPane, separator, output);
+
         label.setMinWidth(1050);
         label.setId("editor");
         stage = new Stage();

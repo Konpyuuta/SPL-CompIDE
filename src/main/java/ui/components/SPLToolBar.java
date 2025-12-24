@@ -26,7 +26,7 @@ public class SPLToolBar extends ToolBar implements Observer {
 
     private final Button SAVE_TOOL = new Button("", new ImageView("/save.png"));
 
-    private final Button DEBUG_TOOL = new Button("", new ImageView("/debug_big_icon.png"));
+    private final Button DEBUG_TOOL = new Button("", new ImageView("/debug.png"));
 
     public SPLToolBar() {
         initComponents();
@@ -90,5 +90,9 @@ public class SPLToolBar extends ToolBar implements Observer {
 
     public Button getDebugButton() {
         return DEBUG_TOOL;
+    }
+
+    public Button getRunButton() {
+        return RUN_TOOL;
     }
 }

@@ -65,9 +65,12 @@ public class StandardEditor extends Editor {
                 if ( m0.find() ) Platform.runLater( () -> codeArea.insertText( caretPosition, m0.group() ) );
             }
         });
+        VirtualizedScrollPane<CodeArea> vsPane = new VirtualizedScrollPane<>(codeArea);
+        vsPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        this.getChildren().add(vsPane);
 
-        this.getChildren().add(new VirtualizedScrollPane<>(codeArea));
-        this.setPrefHeight(450);
+        setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        this.setPrefHeight(500);
     }
 
 
