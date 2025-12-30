@@ -21,7 +21,7 @@ For a detailed explanation of the SPL' language, please take a look at the [Wiki
 
 ### Start the software
 
-Under releases you can find the first release of the program tagged as v1. Before you download the SPLCompiler.jar file and start it on your computer, make sure that you've an up-to-date java version installed on your machine (version 21.0 +)
+Under releases you can find the first pre release of the program tagged as v1 as well as the second v2. Before you download the SPLCompiler.jar (pre release v2) file and start it on your computer, make sure that you've an up-to-date java version installed on your machine (version 21.0 +). You won't need to install JavaFX dependencies, however so far only Windows is supported, there might be issues with Linux and MacOS. 
 
 ![Start](./img/spl_compiler/start_dialog.png)
 
