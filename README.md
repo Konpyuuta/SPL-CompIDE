@@ -67,3 +67,7 @@ After the click on the Debugging-Tool the program stops at the choosen location,
 ## Current status
 Finished
 
+
+## License
+
+This project includes code from RichTextFX (https://github.com/FXMisc/RichTextFX), used under the BSD 2-Clause License.
